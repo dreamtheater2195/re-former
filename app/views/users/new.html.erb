@@ -1,0 +1,40 @@
+<!-- <!DOCTYPE html>
+<html>
+<body>
+  <form method="post" action="/users" accept-charset="UTF-8">
+    Username:  <input type="text" name="user[name]" value=""><br>
+    Email:     <input type="text" name="user[email]" value=""><br>
+    Password: <input type="password" name="user[password]" value=""><br>
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="submit" value="Save Changes">
+  </form>
+</body>
+</html> -->
+<!--<%= form_tag("/users",method: "post") do %>
+  <%= text_field_tag(:name) %><br>
+  <%= text_field_tag(:email) %><br>
+  <%= password_field_tag(:password) %><br>
+  <%= submit_tag "Submit" %>
+<% end %>-->
+
+<%= form_for(@user) do |f| %>
+  <ul>
+    <% @user.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+  <p>
+    <%= f.label :name %> <br/> <!-- when the form is submitted, the value entered by the user will be available in the controller as params[:user][:name]. -->
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :email %> <br/>
+    <%= f.text_field :email, :value => "example@email.com" %>
+  </p>
+  <p>
+    <%= f.label :password %> <br/>
+    <%= f.password_field :password %>
+  </p>
+  <p><%= f.submit %></p>
+
+<% end %>
