@@ -1,0 +1,23 @@
+<%= form_for(@user) do |f| %>
+  <ul>
+    <% @user.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+  <p>
+    <%= f.label :name %> <br/> <!-- when the form is submitted, the value entered by the user will be available in the controller as params[:user][:name]. -->
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :email %> <br/>
+    <%= f.text_field :email, :value => "example@email.com" %>
+  </p>
+  <p>
+    <%= f.label :password %> <br/>
+    <%= f.password_field :password %>
+  </p>
+  <p><%= f.submit %></p>
+
+<% end %>
+
+<!-- HTML and #form_tag forms (which should still be commented out) will not work -- they will submit the form as a POST request when you need it to be a PATCH (PUT) -->
